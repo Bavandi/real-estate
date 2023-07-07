@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 declare const HSGoTo: any;
 
@@ -8,11 +8,15 @@ declare const HSGoTo: any;
   styleUrls: ['./go-to.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GoToComponent implements OnInit {
+export class GoToComponent implements OnInit , AfterViewInit{
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+   this._initializeGoTo(); 
   }
 
   private _initializeGoTo() {
