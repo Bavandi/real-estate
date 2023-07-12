@@ -51,7 +51,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/Chart.bundle.min.js",
+              "src/assets/js/vendor.min.js",
+              "src/assets/vendor/aos/aos.js",
+              "src/assets/js/theme.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -144,6 +149,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "real-estate"
 }

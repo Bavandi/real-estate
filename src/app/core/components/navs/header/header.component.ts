@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { JsPluginsInitService } from 'src/app/core/vendor-utils';
 
-declare const HSMegaMenu: any;
 
 @Component({
   selector: 'bre-header',
@@ -10,23 +10,18 @@ declare const HSMegaMenu: any;
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(
+    private _jsPluginsInitService: JsPluginsInitService,
+  ) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-    this._initializationOfMegaMenu();
+    this._jsPluginsInitService.initializationOfBootstrapDropdown(),
+    this._jsPluginsInitService.initializationOfHeader(),
+    this._jsPluginsInitService.initializationOfMegaMenu();
   }
 
-  private _initializationOfMegaMenu() {
-    // INITIALIZATION OF MEGA MENU
-    // =======================================================
-    new HSMegaMenu('.js-mega-menu', {
-      desktop: {
-        position: 'left'
-      }
-    });
-  }
 
 }

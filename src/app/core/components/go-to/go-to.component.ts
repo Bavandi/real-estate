@@ -1,6 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-
-declare const HSGoTo: any;
+import { JsPluginsInitService } from '../../vendor-utils';
 
 @Component({
   selector: 'bre-go-to',
@@ -10,20 +9,15 @@ declare const HSGoTo: any;
 })
 export class GoToComponent implements OnInit , AfterViewInit{
 
-  constructor() { }
+  constructor(
+    private _jsPluginsInitService: JsPluginsInitService,
+  ) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit(): void {
-   this._initializeGoTo(); 
-  }
-
-  private _initializeGoTo() {
-    // INITIALIZATION OF GO TO
-    // =======================================================
-    new HSGoTo('.js-go-to');
-
+    this._jsPluginsInitService.initializationOfGoTo();
   }
 
 }

@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { JsPluginsInitService } from '../core/vendor-utils';
 
-declare const HSBsValidation: any;
-
-declare const HSCore: any;
 
 @Component({
   selector: 'bre-home',
@@ -10,28 +8,24 @@ declare const HSCore: any;
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(
+    private _jsPluginsInitService: JsPluginsInitService,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  private _initializationOfBootstrapValidation() {
-    // INITIALIZATION OF BOOTSTRAP VALIDATION
-    // =======================================================
-    HSBsValidation.init('.js-validate', {
-      onSubmit: (data: any) => {
-        data.event.preventDefault()
-        alert('Submited')
-      }
-    })
+  ngAfterViewInit(): void {
+    this._pluginsInit();
   }
 
-  private _initializeTextAnimation() {
-    // INITIALIZATION OF TEXT ANIMATION (TYPING)
-    // =======================================================
-    HSCore.components.HSTyped.init('.js-typedjs')
+  private _pluginsInit() {
+    this._jsPluginsInitService.initializationOfBootstrapValidation(),
+      
+
+      this._jsPluginsInitService.initializationOfTextAnimation();
   }
 
 }
